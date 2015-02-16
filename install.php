@@ -44,6 +44,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
     mysql_close($conn);
 }
 
+    //Change to overwrite old tables??
     query("CREATE TABLE IF NOT EXISTS settings( ".
         "entry INT NOT NULL, ". 
         "bg_color VARCHAR(10) NOT NULL, ".
