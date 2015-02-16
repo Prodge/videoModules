@@ -42,7 +42,7 @@ function query($query, $sqlServer, $sqlUsername, $sqlPassword){
 }
 
     query("CREATE TABLE settings( ".
-        "PRIMARY KEY ( tutorial_id ));", 
+        "PRIMARY KEY ( tutorial_id ));". 
         "bg_color VARCHAR(10) NOT NULL, ".
         "paragraph_color VARCHAR(10) NOT NULL, ".
         "heading_color VARCHAR(10) NOT NULL, ".
