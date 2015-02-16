@@ -55,4 +55,26 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
         "PRIMARY KEY ( entry ));", 
         $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
+    query("CREATE TABLE modules( ".
+        "id INT NOT NULL AUTO_INCREMENT, ". 
+        "number VARCHAR(10) NOT NULL, ".
+        "name VARCHAR(200) NOT NULL, ".
+        "description VARCHAR(2000), ".
+        "thumbnail VARCHAR(255), ".
+        "PRIMARY KEY ( id ));", 
+        $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+
+    query("CREATE TABLE videos( ".
+        "id INT NOT NULL, ". 
+        "number VARCHAR(10) NOT NULL, ".
+        "name VARCHAR(200) NOT NULL, ".
+        "module_id int NOT NULL, ".
+        "thumbnail VARCHAR(255), ".
+        "discription VARCHAR(2000), ".
+        "runtime VARCHAR(10), ".
+        "embed VARCHAR(2000) NOT NULL, ".
+        "PRIMARY KEY ( id ));", 
+        $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+
+
 ?> 
