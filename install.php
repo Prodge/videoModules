@@ -20,7 +20,7 @@ if (mysql_query("CREATE DATABASE IF NOT EXISTS $sqlDatabase", $conn)) {
 //Disconnect
 mysql_close($conn);
 
-function query($query, $sqlServer, $sqlUsername, $sqlPassword){
+function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
 
     //Create connection
     $conn = mysql_connect($sqlServer, $sqlUsername, $sqlPassword);
@@ -49,6 +49,6 @@ function query($query, $sqlServer, $sqlUsername, $sqlPassword){
         "link_color VARCHAR(10) NOT NULL, ".
         "link_over_color VARCHAR(10) NOT NULL, ".
         "site_name VARCHAR(200) NOT NULL, ",
-        $sqlServer, $sqlUsername, $sqlPassword);
+        $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
 ?> 
