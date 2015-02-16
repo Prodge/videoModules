@@ -48,7 +48,7 @@ function query($query, $sqlServer, $sqlUsername, $sqlPassword){
         "heading_color VARCHAR(10) NOT NULL, ".
         "link_color VARCHAR(10) NOT NULL, ".
         "link_over_color VARCHAR(10) NOT NULL, ".
-        "site_name VARCHAR(200) NOT NULL, ".
+        "site_name VARCHAR(200) NOT NULL, ",
         $sqlServer, $sqlUsername, $sqlPassword);
 
 ?> 
