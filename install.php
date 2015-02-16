@@ -1,6 +1,6 @@
 <?php
 
-echo "Installing";
+echo "Installing <br>";
 
 require_once("config.php");
 
