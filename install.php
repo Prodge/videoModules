@@ -6,7 +6,7 @@ require_once("config.php");
 
 function query($query){
     //Create connection
-    $conn = mysqli_connect($sqlServer, $sqlUsername, $sqlPassword);
+    $conn = mysql_connect($sqlServer, $sqlUsername, $sqlPassword);
 
     //Check connection
     if (!$conn) {
@@ -14,19 +14,21 @@ function query($query){
     }
 
     //Run query
-    if (mysqli_query($conn, $query)) {
+    if (mysql_query($conn, $query)) {
         echo "Database created successfully";
     } else {
-        echo "Error creating database: " . mysqli_error($conn);
+        echo "Error creating database: " . mysql_error($conn);
     }
 
     //Disconnect
-    mysqli_close($conn);
+    mysql_close($conn);
 }
 
     echo $sqlUsername;
+    echo "<br>";
     echo $sqlPassword;
-    
+    echo "<br>";
+
     //Creating Database
     query("CREATE DATABASE videoModules");
 
