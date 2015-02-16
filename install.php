@@ -5,6 +5,12 @@ echo "Installing <br>";
 require_once("config.php");
 
 function query($query){
+
+    echo $sqlUsername;
+    echo "<br>";
+    echo $sqlPassword;
+    echo "<br>";
+
     //Create connection
     $conn = mysql_connect($sqlServer, $sqlUsername, $sqlPassword);
 
@@ -23,11 +29,6 @@ function query($query){
     //Disconnect
     mysql_close($conn);
 }
-
-    echo $sqlUsername;
-    echo "<br>";
-    echo $sqlPassword;
-    echo "<br>";
 
     //Creating Database
     query("CREATE DATABASE videoModules");
