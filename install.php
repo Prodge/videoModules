@@ -30,6 +30,9 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
         die("Connection failed: " . mysql_error());
     }
 
+    //Select DB
+    if (!mysql_select_db($dbname)) die("Could not connect to database" . mysql_error());
+
     //Run query
     if (mysql_query($query, $conn)) {
         echo "Query Successful<br>";
