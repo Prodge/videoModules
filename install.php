@@ -2,9 +2,9 @@
 
 echo "Installing <br>";
 
-require_once("config.php");
 
 function query($query){
+    require_once("config.php");
 
     echo $sqlUsername;
     echo "<br>";
