@@ -45,13 +45,14 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
 }
 
     query("CREATE TABLE settings( ".
-        "PRIMARY KEY ( tutorial_id ));". 
+        "index INT NOT NULL". 
         "bg_color VARCHAR(10) NOT NULL, ".
         "paragraph_color VARCHAR(10) NOT NULL, ".
         "heading_color VARCHAR(10) NOT NULL, ".
         "link_color VARCHAR(10) NOT NULL, ".
         "link_over_color VARCHAR(10) NOT NULL, ".
-        "site_name VARCHAR(200) NOT NULL, ",
+        "site_name VARCHAR(200) NOT NULL, ".
+        "PRIMARY KEY ( index ));", 
         $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
 ?> 
