@@ -7,6 +7,10 @@ require_once("config.php");
 function query($query){
     //Create connection
     $conn = mysqli_connect($sqlServer, $sqlUsername, $sqlPassword);
+
+    echo $sqlUsername;
+    echo $sqlPassword;
+    
     //Check connection
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
