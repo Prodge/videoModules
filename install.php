@@ -1,6 +1,8 @@
 <?php
 
-require_once("../config.php");
+echo "Installing";
+
+require_once("config.php");
 
 function query($query){
     //Create connection
