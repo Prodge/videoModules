@@ -31,7 +31,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
     }
 
     //Select DB
-    if (!mysql_select_db($dbname)) die("Could not connect to database" . mysql_error());
+    if (!mysql_select_db($sqlDatabase)) die("Could not connect to database: " . mysql_error());
 
     //Run query
     if (mysql_query($query, $conn)) {
