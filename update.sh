@@ -14,7 +14,7 @@ echo "=======  Cloning GitHub Repository"
 sudo git clone https://github.com/Prodge/videoModules.git
 cd videoModules/
 echo "=======  Removing .git dir"
-sudo rm -rvf .git/
+sudo rm -rf .git/
 echo "=======  Moving up a folder"
 sudo mv -vf * .[^.]* ..
 cd ..
