@@ -6,12 +6,12 @@
 #Run with 'sudo bash update.sh' in your website root dir.
 
 shopt -s extglob
-sudo rm -rf !(update.sh)
+sudo rm -rvf !(update.sh)
 shopt -u extglob
 sudo git clone https://github.com/Prodge/videoModules.git
 cd videoModules/
-sudo rm -rf .git/
-sudo mv -f * .[^.]* ..
+sudo rm -rvf .git/
+sudo mv -vf * .[^.]* ..
 cd ..
-sudo rmdir videoModules/
+sudo rmdir -v videoModules/
 
