@@ -44,7 +44,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
     mysql_close($conn);
 }
 
-    query("CREATE TABLE settings( ".
+    query("CREATE TABLE IF NOT EXISTS settings( ".
         "entry INT NOT NULL, ". 
         "bg_color VARCHAR(10) NOT NULL, ".
         "paragraph_color VARCHAR(10) NOT NULL, ".
@@ -55,7 +55,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
         "PRIMARY KEY ( entry ));", 
         $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
-    query("CREATE TABLE modules( ".
+    query("CREATE TABLE IF NOT EXISTS modules( ".
         "id INT NOT NULL AUTO_INCREMENT, ". 
         "number VARCHAR(10) NOT NULL, ".
         "name VARCHAR(200) NOT NULL, ".
@@ -64,7 +64,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
         "PRIMARY KEY ( id ));", 
         $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
-    query("CREATE TABLE videos( ".
+    query("CREATE TABLE IF NOT EXISTS videos( ".
         "id INT NOT NULL, ". 
         "number VARCHAR(10) NOT NULL, ".
         "name VARCHAR(200) NOT NULL, ".
