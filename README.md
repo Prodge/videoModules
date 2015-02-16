@@ -23,6 +23,7 @@ cd /var/www/
 sudo rm index.html
 sudo git clone https://github.com/Prodge/videoModules.git
 cd videoModules/
+sudo rm -rf .git/
 sudo mv * .[^.]* ..
 cd ..
 sudo rmdir videoModules/

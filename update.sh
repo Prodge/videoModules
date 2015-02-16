@@ -4,6 +4,7 @@
 sudo rm -rf !(update.sh)
 sudo git clone https://github.com/Prodge/videoModules.git
 cd videoModules/
+sudo rm -rf .git/
 sudo mv -f * .[^.]* ..
 cd ..
 sudo rmdir videoModules/
