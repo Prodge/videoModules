@@ -45,7 +45,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
 }
 
     query("CREATE TABLE settings( ".
-        "index INT NOT NULL". 
+        "index INT NOT NULL, ". 
         "bg_color VARCHAR(10) NOT NULL, ".
         "paragraph_color VARCHAR(10) NOT NULL, ".
         "heading_color VARCHAR(10) NOT NULL, ".
