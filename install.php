@@ -6,11 +6,6 @@ echo "Installing <br>";
 function query($query){
     require_once("config.php");
 
-    echo $sqlUsername;
-    echo "<br>";
-    echo $sqlPassword;
-    echo "<br>";
-
     //Create connection
     $conn = mysql_connect($sqlServer, $sqlUsername, $sqlPassword);
 
@@ -20,10 +15,10 @@ function query($query){
     }
 
     //Run query
-    if (mysql_query($conn, $query)) {
+    if (mysql_query($query, $conn)) {
         echo "Database created successfully";
     } else {
-        echo "Error creating database: " . mysql_error($conn);
+        echo "Error creating database: " . mysql_error();
     }
 
     //Disconnect
