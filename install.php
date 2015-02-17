@@ -49,14 +49,14 @@ function query($query){
 
 //Change to overwrite old tables??
 query("CREATE TABLE IF NOT EXISTS settings( ".
-    "entry INT NOT NULL, ". 
+    "id INT NOT NULL, ". 
     "bg_color VARCHAR(10) NOT NULL, ".
     "paragraph_color VARCHAR(10) NOT NULL, ".
     "heading_color VARCHAR(10) NOT NULL, ".
     "link_color VARCHAR(10) NOT NULL, ".
     "link_over_color VARCHAR(10) NOT NULL, ".
     "site_name VARCHAR(200) NOT NULL, ".
-    "PRIMARY KEY ( entry ));");
+    "PRIMARY KEY ( id ));");
 
 query("CREATE TABLE IF NOT EXISTS modules( ".
     "id INT NOT NULL AUTO_INCREMENT, ". 
@@ -76,6 +76,21 @@ query("CREATE TABLE IF NOT EXISTS videos( ".
     "runtime VARCHAR(10), ".
     "embed VARCHAR(2000) NOT NULL, ".
     "PRIMARY KEY ( id ));");
+
+query("INSERT INTO `settings` (".
+    "`id` ,".
+    "`bg_color` ,".
+    "`paragraph_color` ,".
+    "`heading_color` ,".
+    "`link_color` ,".
+    "`link_over_color` ,".
+    "`site_name`".
+    ")".
+    "VALUES (".
+    "'0', '%ffffff', '%000000', '%000000', '%000000', '%000000', 'MySite'".
+    ");");
+
+
 
 echo "<br><strong>Installation Complete.</strong><br>";
 echo "You can now delete 'install.php'<br>";
