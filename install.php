@@ -1,6 +1,6 @@
 <?php
 
-echo "Installing <br>";
+echo "<strong>Installing</strong><br><br><br>";
 
 require_once("config.php");
 
@@ -13,9 +13,9 @@ if (!$conn) {
 }
 //Creating the database if it doesnt exist already
 if (mysql_query("CREATE DATABASE IF NOT EXISTS $sqlDatabase", $conn)) {
-    echo "Query Successful<br>";
+    echo "New Database Successfully Created<br><br><br>";
 } else {
-    echo "Query Error: " . mysql_error() . "<br>";
+    echo "Could not create database. Error: " . mysql_error() . "<br>";
 }
 //Disconnect
 mysql_close($conn);
@@ -34,7 +34,7 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
 
     //Run query
     if (mysql_query($query, $conn)) {
-        echo "Query Successful:<br><code>" . $query . "</code><br>";
+        echo "Query Successful:<br><code><pre>" . $query . "</pre></code><br>";
     } else {
         die("Query Error: " . mysql_error() . "<br>");
     }
