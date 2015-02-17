@@ -77,6 +77,7 @@ query("CREATE TABLE IF NOT EXISTS videos( ".
     "embed VARCHAR(2000) NOT NULL, ".
     "PRIMARY KEY ( id ));");
 
+//make sure this doesn't insert unless the table is empty
 query("INSERT INTO `settings` (".
     "`id` ,".
     "`bg_color` ,".
