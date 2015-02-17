@@ -67,7 +67,7 @@ query("CREATE TABLE IF NOT EXISTS modules( ".
     "PRIMARY KEY ( id ));");
 
 query("CREATE TABLE IF NOT EXISTS videos( ".
-    "id INT NOT NULL, ". 
+    "id INT NOT NULL AUTO_INCREMENT, ". 
     "number VARCHAR(10) NOT NULL, ".
     "name VARCHAR(200) NOT NULL, ".
     "module_id int NOT NULL, ".
