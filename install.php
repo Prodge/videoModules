@@ -72,7 +72,7 @@ query("CREATE TABLE IF NOT EXISTS videos( ".
     "name VARCHAR(200) NOT NULL, ".
     "module_id int NOT NULL, ".
     "thumbnail VARCHAR(255), ".
-    "discription VARCHAR(2000), ".
+    "description VARCHAR(2000), ".
     "runtime VARCHAR(10), ".
     "embed VARCHAR(2000) NOT NULL, ".
     "PRIMARY KEY ( id ));");
