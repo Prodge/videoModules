@@ -3,7 +3,6 @@
 require_once("common.php");
 
 $db = array();
-
 $db['m'] = array( 
     array("name", "Name", "200", "", "text"), 
     array("number", "Number", "10", "", "text"),
@@ -28,14 +27,53 @@ $db['s'] = array(
     array("site_name", "Site Name", "200", "", "text")
     );
 
+$types = array();
+$types['m'] = 'module';
+$types['v'] = 'video';
+$types['s'] = 'setting';
+
 echo '<h2>Admin Settings</h2>';
 //if post is set then we need to process the query
-if(isset($_POST['name'])){
-    $name = $_POST['name'];
+if(isset($_POST['action'])){
     echo '<p>Processing Query</p>';
+    $action = $_POST['action'];
+    $type = $_POST['type'];
 
+    $query = '';
+    if($action == 'a'){
+        $query .= "insert into `" . $types[$type] . "s` (";
+        for($i=0; $i<sizeof($db[$type]); $i++){
+            $query .= '`' . $db[$type][$i][0] . '`';        
+            if($i != sizeof($db[$type]) - 1 ){
+                $query .= ' , ';
+            }
+        }
+        $query .= ") values (";
+        for($i=0; $i<sizeof($db[$type]); $i++){
+            $query .= "'" . $_POST[$db[$type][$i][0]] . "'";        
+            if($i != sizeof($db[$type]) - 1 ){
+                $query .= ', ';
+            }
+        }
+        $query .= ")";
+        echo $query;
+    }
 
+    if($action == 'e'){
+        $query .= "update `" . $types[$type] . "s` set ";
+        for($i=0; $i<sizeof($db[$type]); $i++){
+            $query .= "`" . $db[$type][$i][0] . "` = '" . $_POST[$db[$type][$i][0]] . "'";        
+            if($i != sizeof($db[$type]) - 1 ){
+                $query .= ', ';
+            }
+        }
+        $query .= "where id = " . $_POST['id'];
+        echo $query;
+    }
 
+    //add support for deleting rows here
+
+    pushTable($query);
 
     echo '<a href="admin.php">Make another Change</a>';
 }else{
@@ -78,10 +116,6 @@ if(isset($_POST['name'])){
 
         //Inputs are now clean
 
-        $types = array();
-        $types['m'] = 'module';
-        $types['v'] = 'video';
-        $types['s'] = 'setting';
         echo '
             <form action="' . $_PHP_SELF . '" method="POST">
             <input type="hidden" name="type" value="' . $type . '">
@@ -93,11 +127,6 @@ if(isset($_POST['name'])){
                 echo '<input type="checkbox" name="ids[]" value="' . $table[$i]["id"] . '">' . $table[$i]["number"] . ' - ' . $table[$i]["name"] . '<br>';
             }
         }else{
-            //query and list all options with checkboxes
-            //if removing, post (type, action, and id) and remove the selected (could me many)
-        //else
-
-
             //If editing, the fields need to be populated first
             if($action == 'e'){
                 echo'<input type="hidden" name="id" value="' . $id . '">';
@@ -107,12 +136,27 @@ if(isset($_POST['name'])){
                 }
                     //add a check if its empty (this shouldnt happen)
             }
+            if($type == 'v'){
+                $table = fetchTable('select * from `modules`');
+            }
             for($i=0; $i<sizeof($db[$type]); $i++){
-                echo $db[$type][$i][1] . ': <input 
-                    type="' . $db[$type][$i][4] . '" 
-                    name="' . $db[$type][$i][0] . '" 
-                    value="' . htmlentities($db[$type][$i][3]) . '"
-                    maxlength="' . $db[$type][$i][2] . '"><br>';
+                if($db[$type][$i][0] == 'module_id' && $type == 'v'){
+                    echo 'Module: <select name="module">';
+                    for($x=0; $x<sizeof($table); $x++){
+                        echo '<option '; 
+                        if($table[$x]["id"] == $db[$type][$x][3]){
+                            echo 'selected ';
+                        }
+                        echo 'value="' . $table[$x]["id"] . '">' . $table[$x]["number"] . ' - ' . $table[$x]["name"] . '</option>';
+                    } 
+                    echo '</select><br>';
+                }else{
+                    echo $db[$type][$i][1] . ': <input 
+                        type="' . $db[$type][$i][4] . '" 
+                        name="' . $db[$type][$i][0] . '" 
+                        value="' . htmlentities($db[$type][$i][3]) . '"
+                        maxlength="' . $db[$type][$i][2] . '"><br>';
+                }
             }
         }
         echo '
