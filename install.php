@@ -21,7 +21,6 @@ if (mysql_query("CREATE DATABASE IF NOT EXISTS $sqlDatabase", $conn)) {
 mysql_close($conn);
 
 function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
-
     //Create connection
     $conn = mysql_connect($sqlServer, $sqlUsername, $sqlPassword);
 
@@ -35,47 +34,50 @@ function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
 
     //Run query
     if (mysql_query($query, $conn)) {
-        echo "Query Successful<br>";
+        echo "Query Successful:<br><code>" . $query . "</code><br>";
     } else {
-        echo "Query Error: " . mysql_error() . "<br>";
+        die("Query Error: " . mysql_error() . "<br>");
     }
 
     //Disconnect
     mysql_close($conn);
 }
 
-    //Change to overwrite old tables??
-    query("CREATE TABLE IF NOT EXISTS settings( ".
-        "entry INT NOT NULL, ". 
-        "bg_color VARCHAR(10) NOT NULL, ".
-        "paragraph_color VARCHAR(10) NOT NULL, ".
-        "heading_color VARCHAR(10) NOT NULL, ".
-        "link_color VARCHAR(10) NOT NULL, ".
-        "link_over_color VARCHAR(10) NOT NULL, ".
-        "site_name VARCHAR(200) NOT NULL, ".
-        "PRIMARY KEY ( entry ));", 
-        $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+//Change to overwrite old tables??
+query("CREATE TABLE IF NOT EXISTS settings( ".
+    "entry INT NOT NULL, ". 
+    "bg_color VARCHAR(10) NOT NULL, ".
+    "paragraph_color VARCHAR(10) NOT NULL, ".
+    "heading_color VARCHAR(10) NOT NULL, ".
+    "link_color VARCHAR(10) NOT NULL, ".
+    "link_over_color VARCHAR(10) NOT NULL, ".
+    "site_name VARCHAR(200) NOT NULL, ".
+    "PRIMARY KEY ( entry ));", 
+    $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
-    query("CREATE TABLE IF NOT EXISTS modules( ".
-        "id INT NOT NULL AUTO_INCREMENT, ". 
-        "number VARCHAR(10) NOT NULL, ".
-        "name VARCHAR(200) NOT NULL, ".
-        "description VARCHAR(2000), ".
-        "thumbnail VARCHAR(255), ".
-        "PRIMARY KEY ( id ));", 
-        $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+query("CREATE TABLE IF NOT EXISTS modules( ".
+    "id INT NOT NULL AUTO_INCREMENT, ". 
+    "number VARCHAR(10) NOT NULL, ".
+    "name VARCHAR(200) NOT NULL, ".
+    "description VARCHAR(2000), ".
+    "thumbnail VARCHAR(255), ".
+    "PRIMARY KEY ( id ));", 
+    $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
 
-    query("CREATE TABLE IF NOT EXISTS videos( ".
-        "id INT NOT NULL, ". 
-        "number VARCHAR(10) NOT NULL, ".
-        "name VARCHAR(200) NOT NULL, ".
-        "module_id int NOT NULL, ".
-        "thumbnail VARCHAR(255), ".
-        "discription VARCHAR(2000), ".
-        "runtime VARCHAR(10), ".
-        "embed VARCHAR(2000) NOT NULL, ".
-        "PRIMARY KEY ( id ));", 
-        $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+query("CREATE TABLE IF NOT EXISTS videos( ".
+    "id INT NOT NULL, ". 
+    "number VARCHAR(10) NOT NULL, ".
+    "name VARCHAR(200) NOT NULL, ".
+    "module_id int NOT NULL, ".
+    "thumbnail VARCHAR(255), ".
+    "discription VARCHAR(2000), ".
+    "runtime VARCHAR(10), ".
+    "embed VARCHAR(2000) NOT NULL, ".
+    "PRIMARY KEY ( id ));", 
+    $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+
+echo "<br><strong>Installation Complete.</strong><br>";
+echo "You can now delete 'install.php'<br>";
 
 
 ?> 

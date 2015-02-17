@@ -8,7 +8,7 @@
 
 shopt -s extglob
 echo "=======  Deleting current install"
-sudo rm -rvf !(update.sh)
+sudo rm -rvf !(phpMyAdmin|update.sh)
 shopt -u extglob
 echo "=======  Cloning GitHub Repository"
 sudo git clone https://github.com/Prodge/videoModules.git
