@@ -20,7 +20,11 @@ if (mysql_query("CREATE DATABASE IF NOT EXISTS $sqlDatabase", $conn)) {
 //Disconnect
 mysql_close($conn);
 
-function query($query, $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword){
+function query($query){
+    global $sqlServer;
+    global $sqlDatabase;
+    global $sqlUsername;
+    global $sqlPassword;
     //Create connection
     $conn = mysql_connect($sqlServer, $sqlUsername, $sqlPassword);
 
@@ -52,8 +56,7 @@ query("CREATE TABLE IF NOT EXISTS settings( ".
     "link_color VARCHAR(10) NOT NULL, ".
     "link_over_color VARCHAR(10) NOT NULL, ".
     "site_name VARCHAR(200) NOT NULL, ".
-    "PRIMARY KEY ( entry ));", 
-    $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+    "PRIMARY KEY ( entry ));");
 
 query("CREATE TABLE IF NOT EXISTS modules( ".
     "id INT NOT NULL AUTO_INCREMENT, ". 
@@ -61,8 +64,7 @@ query("CREATE TABLE IF NOT EXISTS modules( ".
     "name VARCHAR(200) NOT NULL, ".
     "description VARCHAR(2000), ".
     "thumbnail VARCHAR(255), ".
-    "PRIMARY KEY ( id ));", 
-    $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+    "PRIMARY KEY ( id ));");
 
 query("CREATE TABLE IF NOT EXISTS videos( ".
     "id INT NOT NULL, ". 
@@ -73,8 +75,7 @@ query("CREATE TABLE IF NOT EXISTS videos( ".
     "discription VARCHAR(2000), ".
     "runtime VARCHAR(10), ".
     "embed VARCHAR(2000) NOT NULL, ".
-    "PRIMARY KEY ( id ));", 
-    $sqlServer, $sqlDatabase, $sqlUsername, $sqlPassword);
+    "PRIMARY KEY ( id ));");
 
 echo "<br><strong>Installation Complete.</strong><br>";
 echo "You can now delete 'install.php'<br>";
