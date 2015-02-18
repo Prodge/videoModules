@@ -15,8 +15,8 @@ for($i=0; $i<sizeof($videos); $i+=3){
     echo '</tr>';
     echo '<tr>';
     for($x=0; $x<3 && $i+$x<sizeof($videos); $x++){
-        echo    '<td><a href="index.php?p=v&i=' . $videos[$i]['id'] . '">' . $videos[$i]['name'] . '</a>';
-        echo    '<p>' . $videos[$i]['description'] . '</p></td>';
+        echo    '<td><a href="index.php?p=v&i=' . $videos[$i+$x]['id'] . '">' . $videos[$i+$x]['name'] . '</a>';
+        echo    '<p>' . $videos[$i+$x]['description'] . '</p></td>';
     }
     echo '</tr>';
 }
