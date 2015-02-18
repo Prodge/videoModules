@@ -90,7 +90,7 @@ query("INSERT INTO `settings` (".
     "`site_description`".
     ")".
     "VALUES (".
-    "'0', '%ffffff', '%000000', '%000000', '%000000', '%000000', 'MySite', 'A Simple Module based Video Website by Prodge'".
+    "'0', '#ffffff', '#000000', '#000000', '#000000', '#000000', 'MySite', 'A Simple Module based Video Website by Prodge'".
     ");");
 
 
