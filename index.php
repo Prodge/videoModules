@@ -8,7 +8,7 @@
 ?>
 <head>
     <title><?php echo $settings["site_name"]; ?></title>
-    <link rel="stylesheet" type="text/css" href="style/main.css">
+    <?php include('style.php">'); ?>
     <meta name="author" content="prodge">
     <meta name="description" content="<?php echo $settings["site_description"]; ?>">
 </head>
