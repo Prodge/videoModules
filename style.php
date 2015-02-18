@@ -6,7 +6,7 @@
 
 <style>
     .wrapper{ 
-        width: 50%;
+        width: 800px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -41,12 +41,12 @@
     }
 
     table{
-        width: 90%;
+        width: 750px;
     }
     th, td {
         border: 1px solid black;
     }
-    th{
+    tr{
         text-align: left;
     }
     td {

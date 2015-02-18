@@ -10,7 +10,7 @@ echo '<table style="width:100%">';
 for($i=0; $i<sizeof($videos); $i+=3){
     echo '<tr>';
     for($x=0; $x<3 && $i+$x<sizeof($videos); $x++){
-        echo '<td>' . $videos[$i+$x]['thumbnail'] . '</td>';
+        echo '<td width="247px">' . $videos[$i+$x]['thumbnail'] . '</td>';
     }
     echo '</tr>';
     echo '<tr>';
