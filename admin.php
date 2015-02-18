@@ -93,7 +93,7 @@ if(isset($_POST['action'])){
     //Querying database
     pushTable($query);
 
-    echo $query;
+    echo htmlentities($query);
     echo '<br><br><br><br><a href="admin.php">Make another Change</a>';
 }else{
     if (isset($_GET['a'])) {
@@ -135,7 +135,7 @@ if(isset($_POST['action'])){
 
         //Start generating form, All forms will have these first 3 attributes
         echo '
-            <form action="' . $_PHP_SELF . '" method="POST">
+            <form accept-charset="UTF-8" action="' . $_PHP_SELF . '" method="POST">
             <input type="hidden" name="type" value="' . $type . '">
             <input type="hidden" name="action" value="' . $action . '">
             ';
