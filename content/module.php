@@ -3,8 +3,10 @@ $module = fetchTable('select * from modules where id = ' . $id);
 $module = $module[0];
 $videos = fetchTable('select * from videos where module_id = ' . $id . ' order by number');
 
-echo 'Module: ' . $module['name'];
-echo '<br>';
+echo '<a href=index.php?>Home</a> > ';
+echo $module['name'];
+
+echo '<br><br>';
 
 echo '<table style="width:100%">';
 for($i=0; $i<sizeof($videos); $i+=3){
