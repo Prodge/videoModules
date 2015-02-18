@@ -2,6 +2,7 @@
 
 require_once("common.php");
 
+//Array used for generating forms, storing values and making querys
 $db = array();
 $db['m'] = array( 
     array("name", "Name", "200", "", "text"), 
@@ -32,14 +33,19 @@ $types['m'] = 'module';
 $types['v'] = 'video';
 $types['s'] = 'setting';
 
+$homeBtn = '<br><br><br><br><a href="admin.php">Admin Home</a>';
+
 echo '<h2>Admin Settings</h2>';
-//if post is set then we need to process the query
+
+//If post is set then we need to process the query
 if(isset($_POST['action'])){
     echo '<p>Processing Query</p>';
     $action = $_POST['action'];
     $type = $_POST['type'];
 
     $query = '';
+
+    //Generating query for adding to a table
     if($action == 'a'){
         $query .= "insert into `" . $types[$type] . "s` (";
         for($i=0; $i<sizeof($db[$type]); $i++){
@@ -56,49 +62,58 @@ if(isset($_POST['action'])){
             }
         }
         $query .= ")";
-        echo $query;
     }
 
+    //Generating query for editing a row
     if($action == 'e'){
         $query .= "update `" . $types[$type] . "s` set ";
         for($i=0; $i<sizeof($db[$type]); $i++){
             $query .= "`" . $db[$type][$i][0] . "` = '" . $_POST[$db[$type][$i][0]] . "'";        
-            if($i != sizeof($db[$type]) - 1 ){
+            if($i != sizeof($db[$type]) - 1){
                 $query .= ', ';
             }
         }
-        $query .= "where id = " . $_POST['id'];
-        echo $query;
+        $query .= " where id = " . $_POST['id'];
     }
 
-    //add support for deleting rows here
+    //Generating a query for deleting any given number of rows
+    if($action == 'r'){
+        $query .= 'delete from `' . $types[$type] . 's` where id in (';
+        $ids = $_POST['ids'];
+        for($i=0; $i<sizeof($ids); $i++) {
+            $query .= $ids[$i];
+            if($i != sizeof($ids) - 1){
+                $query .= ', ';
+            }
+        }
+        $query .= ')';
+    }
 
+    //Querying database
     pushTable($query);
 
-    echo '<a href="admin.php">Make another Change</a>';
+    echo $query;
+    echo '<br><br><br><br><a href="admin.php">Make another Change</a>';
 }else{
-
-    echo '<p>Select what you want to do<p><br><br>';
-
     if (isset($_GET['a'])) {
         //Action will either be 'e' for edit, 'r' for remove or 'a' for add
         $action = $_GET['a'];
 
         //Check if action is valid
         if($action != 'a' && $action != 'r' && $action != 'e'){
-            die("Invalid action parameter");
+            die("Invalid action parameter" . $homeBtn);
         }
 
         //If an action is set then a type must be set
         if (!isset($_GET['t'])) {
-            die("Action type must be set");
+            die("Action type must be set" . $homeBtn);
         }
         //Type will either be 's' for settings, 'v' for video or 'm' for module
         $type = $_GET['t'];
 
         //Check if type is valid
         if($type != 's' && $type != 'v' && $type != 'm'){
-            die("Invalid type parameter");
+            die("Invalid type parameter" . $homeBtn);
         }
 
         //If type is settings, the action can only be edit
@@ -108,38 +123,49 @@ if(isset($_POST['action'])){
         }else{
             //If action is edit then id must be set
             if($action == 'e' && !isset($_GET['i'])){
-                die("id not set, Please select an item to edit. Refrain from clicking edit");
+                die("ID not set, Please select an item to edit. Refrain from clicking edit" . $homeBtn);
             }
             $id = $_GET['i'];
         }
 
+        //Inputs are now presumably clean
 
-        //Inputs are now clean
+        echo '<p>Make your changes<p><br><br>';
 
+        //Start generating form, All forms will have these first 3 attributes
         echo '
             <form action="' . $_PHP_SELF . '" method="POST">
             <input type="hidden" name="type" value="' . $type . '">
             <input type="hidden" name="action" value="' . $action . '">
             ';
+        //If removing rows, query the db for current rows and display them with checkbok options
+        //Row id's to delete are posted in array ids[]
         if($action == 'r'){
             $table = fetchTable('select * from `' . $types[$type] . 's`');
+            if(empty($table)){
+                die('<p>There are no rows to delete, The table is already empty</p>' . $homeBtn);
+            }
             for($i=0; $i<sizeof($table); $i++){
                 echo '<input type="checkbox" name="ids[]" value="' . $table[$i]["id"] . '">' . $table[$i]["number"] . ' - ' . $table[$i]["name"] . '<br>';
             }
         }else{
-            //If editing, the fields need to be populated first
+            //If editing, the fields need to be populated with the current values
             if($action == 'e'){
                 echo'<input type="hidden" name="id" value="' . $id . '">';
                 $table = fetchTable('select * from `' . $types[$type] . 's` where `id` = ' . $id);
                 for($i=0; $i<sizeof($db[$type]); $i++){
                     $db[$type][$i][3] = $table[0][$db[$type][$i][0]];
                 }
-                    //add a check if its empty (this shouldnt happen)
+                if(empty($table)){
+                    die('<p>Could not find data for the ' . $types[$type] . ' you selected. This should not happen.<br> Someone else might have deleted it since the last page load</p>' . $homeBtn);
+                }
             }
+            //If adding or updating a video, the modules need to be listed 
             if($type == 'v'){
                 $table = fetchTable('select * from `modules`');
             }
             for($i=0; $i<sizeof($db[$type]); $i++){
+                //listing the modules as a dropdown
                 if($db[$type][$i][0] == 'module_id' && $type == 'v'){
                     echo 'Module: <select name="module">';
                     for($x=0; $x<sizeof($table); $x++){
@@ -165,7 +191,7 @@ if(isset($_POST['action'])){
             ';
 
     }else{ //No action set, user needs to pick one
-       
+        echo '<p>Select what you want to do<p><br><br>';
         //Setting up option arrays
         $actions = array( 
             array("a", "Add"), 
@@ -195,11 +221,7 @@ if(isset($_POST['action'])){
             }
             echo '<br>';
         }
-
-
-
-
-
     }
 }
+echo $homeBtn;
 ?>
