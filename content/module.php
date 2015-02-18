@@ -12,7 +12,7 @@ for($i=0; $i<sizeof($videos); $i++){
         echo '<tr>';
     }
     echo    '<td>' . $videos[$i]['thumbnail'] . '</td>';
-    echo    '<td><a href="index.php?p=m&i=' . $videos[$i]['id'] . '">' . $videos[$i]['name'] . '</a>';
+    echo    '<td><a href="index.php?p=v&i=' . $videos[$i]['id'] . '">' . $videos[$i]['name'] . '</a>';
     echo    '<p>' . $videos[$i]['description'] . '</p></td>';
     if($i % 2 == 0 && $i != 0){
         echo '</tr>';
