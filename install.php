@@ -56,6 +56,7 @@ query("CREATE TABLE IF NOT EXISTS settings( ".
     "link_color VARCHAR(10) NOT NULL, ".
     "link_over_color VARCHAR(10) NOT NULL, ".
     "site_name VARCHAR(200) NOT NULL, ".
+    "site_description VARCHAR(1000), ".
     "PRIMARY KEY ( id ));");
 
 query("CREATE TABLE IF NOT EXISTS modules( ".
@@ -85,10 +86,11 @@ query("INSERT INTO `settings` (".
     "`heading_color` ,".
     "`link_color` ,".
     "`link_over_color` ,".
-    "`site_name`".
+    "`site_name` ,".
+    "`site_description`".
     ")".
     "VALUES (".
-    "'0', '%ffffff', '%000000', '%000000', '%000000', '%000000', 'MySite'".
+    "'0', '%ffffff', '%000000', '%000000', '%000000', '%000000', 'MySite', 'A Simple Module based Video Website by Prodge'".
     ");");
 
 
