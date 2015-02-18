@@ -36,6 +36,7 @@ Configuring
 
 Todo
 ---
+- Need to allow embed code including "" and <>
 
 
 Known Bugs
