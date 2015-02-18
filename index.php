@@ -28,6 +28,25 @@
             die('Error: Page is not valid.  <a href="index.php">Home</a>');
         }
         $main = $mains[$p] . '.php';
+        //If we are loading a module or video, we need to get its id
+        if($p != 'h'){
+            if(isset($_GET['i'])){
+                $id = $_GET['i'];
+                //checking thi id exists in the database
+                $valid_ids = fetchTable('select id from ' . $mains[$p] . 's');
+                $isValid=false;
+                for($i=0; $i<sizeof($valid_ids); $i++){
+                    if($valid_ids[$i]['id'] == $id){
+                        $isValid = true;
+                    }
+                }
+                if(!$isValid){
+                    die('Error: ' . $mains[$p] . ' is not valid.  <a href="index.php">Home</a>');
+                }
+            }else{
+                die('Error: ' . $mains[$p] . ' id not specified.   <a href="index.php">Home</a>');
+            }
+        }
     }
 
     //checking the files we need exist
