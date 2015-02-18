@@ -168,7 +168,7 @@ if(isset($_POST['action'])){
             for($i=0; $i<sizeof($db[$type]); $i++){
                 //listing the modules as a dropdown
                 if($db[$type][$i][0] == 'module_id' && $type == 'v'){
-                    echo 'Module: <select name="module">';
+                    echo 'Module: <select name="module_id">';
                     for($x=0; $x<sizeof($table); $x++){
                         echo '<option '; 
                         if($table[$x]["id"] == $db[$type][$x][3]){
