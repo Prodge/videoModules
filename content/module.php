@@ -7,16 +7,18 @@ echo 'Module: ' . $module['name'];
 echo '<br>';
 
 echo '<table style="width:100%">';
-for($i=0; $i<sizeof($videos); $i++){
-    if($i % 3 == 0){
-        echo '<tr>';
+for($i=0; $i<sizeof($videos); $i+=3){
+    echo '<tr>';
+    for($x=0; $x<3 && $i+$x<sizeof($videos); $x++){
+        echo '<td>' . $videos[$i+$x]['thumbnail'] . '</td>';
     }
-    echo    '<td>' . $videos[$i]['thumbnail'] . '</td>';
-    echo    '<td><a href="index.php?p=v&i=' . $videos[$i]['id'] . '">' . $videos[$i]['name'] . '</a>';
-    echo    '<p>' . $videos[$i]['description'] . '</p></td>';
-    if($i % 2 == 0 && $i != 0){
-        echo '</tr>';
+    echo '</tr>';
+    echo '<tr>';
+    for($x=0; $x<3 && $i+$x<sizeof($videos); $x++){
+        echo    '<td><a href="index.php?p=v&i=' . $videos[$i]['id'] . '">' . $videos[$i]['name'] . '</a>';
+        echo    '<p>' . $videos[$i]['description'] . '</p></td>';
     }
+    echo '</tr>';
 }
 echo '</table>';
 
