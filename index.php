@@ -53,17 +53,17 @@
     $main = 'content/' . $main;
     $pages = array('content/header.php', $main, 'content/footer.php');
 ?>
-
-<div class="wrapper">
-    <?php
-        foreach($pages as $page){
-            if(file_exists($page)){
-                include($page);
-            }else{
-                die('page "' . $page . '" does not exist');
+<body>
+    <div class="wrapper">
+        <?php
+            foreach($pages as $page){
+                if(file_exists($page)){
+                    include($page);
+                }else{
+                    die('page "' . $page . '" does not exist');
+                }
             }
-        }
-    ?>
-</div>
-
+        ?>
+    </div>
+</body>
 
