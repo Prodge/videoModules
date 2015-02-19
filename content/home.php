@@ -1,6 +1,7 @@
 <?php
 echo $settings['site_description'];
 echo '<br>';
+echo '<br>';
 
 $modules = fetchTable('select * from modules');
 
