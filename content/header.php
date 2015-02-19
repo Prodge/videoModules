@@ -1,2 +1,6 @@
-<h2>This is the header</h2>
-<hr>
+<a href="index.php">
+    <img border="0" src="image/header.png" alt="<?php $settings['site_name'] ?>" width="800" height="118">
+</a>
+
+<br><br><br>
+
