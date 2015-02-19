@@ -1,3 +1,4 @@
+<body style="width:60%; margin-right:auto; margin-left:auto;">
 <?php
 
 require_once("common.php");
@@ -226,3 +227,4 @@ if(isset($_POST['action'])){
 }
 echo $homeBtn;
 ?>
+</body>
