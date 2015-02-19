@@ -12,7 +12,7 @@ echo '<table style="width:100%">';
 for($i=0; $i<sizeof($videos); $i+=3){
     echo '<tr>';
     for($x=0; $x<3 && $i+$x<sizeof($videos); $x++){
-        echo '<td width="247px">' . $videos[$i+$x]['thumbnail'] . '</td>';
+        echo '<td width="264px"><a href="index.php?p=v&i=' . $videos[$i+$x]['id'] . '"><img border="0" src="' . $videos[$i+$x]['thumbnail'] . '" alt="' . $videos[$i+$x]['name'] . '" width="264" height="149"></a></td>';
     }
     echo '</tr>';
     echo '<tr>';
