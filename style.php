@@ -41,10 +41,10 @@
     }
 
     table{
-        width: 750px;
+        width: 100%;
     }
     th, td {
-        border: 1px solid black;
+        border: 0px;
     }
     tr{
         text-align: left;
