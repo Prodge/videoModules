@@ -34,6 +34,7 @@
                     array("link_color", "Link Color", "10", "", "text"),
                     array("link_over_color", "Link Over Color", "10", "", "text"),
                     array("site_name", "Site Name", "200", "", "text"),
+                    array("header", "Header", "255", "", "text"),
                     array("site_description", "Site Description", "1000", "", "text")
                     );
 
