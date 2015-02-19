@@ -37,6 +37,7 @@ Or simply download as zip and extract to your webserver root
     - If you don't see any errors then you are good to go
     - It is recomended that you now delete 'install.php'
     - While you're at it, you should probably also delete both the '.sh' scripts (unless you want to use them)
+- Modify admin.php to have the username and password you desire.
 - You can now add modules, videos and configure settings at http://yoursite.com/admin.php
 
 ###Todo
