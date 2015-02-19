@@ -1,13 +1,12 @@
 # videoModules
-Easily deploy a website housing videos within different modules
-
-
-Currently in progress
+videoModules is a simple php based website that presents videos grouped into modules. The website is designed to be very easy to install (instructions below) and configure. A SQL based database server is required however asside from creating a username and password, videoModules will perform all of the interactions with the database on the users behalf. An admin page is avalible for adding, editing and removing videos and modules as well as some general website settings. Other than adding in login information, no editing of the source is required to fully customize the website. However if you wish, the content portion of the website is arranged in a fairly modular way that should make it easy to make deeper modifications.
+See the screenshots below for more information.
 
 
 ###Instructions
 
-####Installing an appropriate web server:
+####Installing an appropriate web server
+This will work with most linux distributions.
 ```
 sudo apt-get update
 sudo apt-get upgrade
@@ -17,6 +16,7 @@ sudo apt-get install php5
 sudo apt-get install php5-mysql
 ```
 ####Installing videoModules
+The hard way:
 ```
 sudo apt-get install git
 cd /var/www/
@@ -40,9 +40,22 @@ Or simply download as zip and extract to your webserver root
 - Modify admin.php to have the username and password you desire.
 - You can now add modules, videos and configure settings at http://yoursite.com/admin.php
 
-###Todo
-
-
-
 ###Known Bugs
+- Adding ' to any input fields will cause a SQL error.
 
+###Screenshots
+
+#####Home Page
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/home.png "Home Page")
+#####Module Page
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/module.png "Module Page")
+#####Video Page
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/video.png "Video Page")
+#####Admin Home Page
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/admin-home.png "Admin Home Page")
+#####Admin Website Settings
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/admin-settings.png "Admin Website Settings")
+#####Admin Edit Video
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/admin-editVideo.png "Admin Edit Video")
+#####Admin Remove Video
+![alt text](https://github.com/Prodge/videoModules/raw/master/screenshots/admin-removeVideo.png "Admin Remove Video")
